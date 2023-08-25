@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Practice Suite">
+    <test name="Cart Demo Test">
+        <parameter name="url" value="https://demo.opencart.com"/>
+        <classes>
+            <class name="OpenCartDemoTest"/>
+        </classes>
+    </test> <!-- Test -->
+
+    <test name="Automation Practice Site Demo">
+        <parameter name="url" value="https://testautomationpractice.blogspot.com"/>
+        <classes>
+            <class name="AutomationPracticeSiteTest"/>
+        </classes>
+        </test>
+
+
+     <!-- Test -->
+</suite> <!-- Suite -->
