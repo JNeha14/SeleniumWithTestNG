@@ -3,8 +3,6 @@ package org.test.pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.Set;
@@ -59,6 +57,8 @@ public class AutomationPracticeSitePage
     private static final By dayCal = By.xpath("//div[@id='ui-datepicker-div']//following::table//td/a[text()='" + date + "']");
     private static final By searchResults = By.xpath("(//input[@id='Wikipedia1_wikipedia-search-input']//following::div[@id='Wikipedia1_wikipedia-search-results']//child::a)[1]");
     private static final By resizeDiv = By.xpath("//*[@id='resizable']/div[3]");
+    private static final By txtDroppedDiv = By.xpath("//*[@id='droppable']/p");
+    private static final By pPrompt = By.xpath("//p[@id='demo']");
 
     public AutomationPracticeSitePage(WebDriver driver)
     {
@@ -155,9 +155,22 @@ public class AutomationPracticeSitePage
     }
 
 
-    public void jsAlerts()
+    public String jsAlerts(String name)
     {
+        //handle alert
+        driver.findElement(btnAlert).click();
+        pageCache.getUtilities().handleAlerts(null);
 
+        //handle confirmation alert
+        driver.findElement(btnConfirmBox).click();
+        pageCache.getUtilities().handleAlerts(null);
+
+        //handle prompts
+        driver.findElement(btnPrompt).click();
+        pageCache.getUtilities().handlePrompts(name, null);
+
+        //get text after prompt accept
+        return driver.findElement(pPrompt).getText();
     }
 
 
@@ -168,11 +181,11 @@ public class AutomationPracticeSitePage
     }
 
 
-    public void dragAndDrop()
+    public String dragAndDrop()
     {
         pageCache.getUtilities().scrollToElement(dragDiv);
         pageCache.getUtilities().dragAndDropElement(dragDiv, dropDiv);
-
+        return driver.findElement(txtDroppedDiv).getText();
     }
 
 

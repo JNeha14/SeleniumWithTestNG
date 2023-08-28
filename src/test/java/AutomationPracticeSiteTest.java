@@ -34,13 +34,22 @@ public class AutomationPracticeSiteTest extends BaseTest
     @Test(priority = 4)
     public void testDragAndDropElements()
     {
-
+        String actualText = pageCache.getAutomationPracticeSitePage().dragAndDrop();
+        Assert.assertEquals(actualText, "Dropped!", actualText);
     }
 
     @Test(priority = 5)
     public void testResizeElement()
     {
         pageCache.getAutomationPracticeSitePage().resizeElement();
+    }
+
+    @Test(priority = 6)
+    public void testAlerts()
+    {
+        String name = "Akshay Bendal";
+        String promptText = pageCache.getAutomationPracticeSitePage().jsAlerts(name);
+        Assert.assertEquals(promptText, "Hello "+ name +"! How are you today?", "Expected prompt text does not match actual text");
     }
 
 }
